@@ -1,0 +1,168 @@
+@keyframes title-display {
+  0% {
+    transform: translateY(-750px);
+  }
+  25% {
+    transform: translateY(-562.5px);
+  }
+  50% {
+    transform: translateY(-375px);
+  }
+  75% {
+    transform: translateY(-187.5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes start-btn-display {
+  0% {
+    transform: translateY(500px);
+  }
+  25% {
+    transform: translateY(375px);
+  }
+  50% {
+    transform: translateY(250px);
+  }
+  75% {
+    transform: translateY(125px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+body {
+  background-image: url("https://cdn.wallpapersafari.com/6/6/08c4mH.jpg");
+  width: 100%;
+}
+.title-img-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+.game-title-img {
+  animation: title-display 5s ease-in 1;
+}
+
+.start-play-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+}
+
+.start-play-btn {
+  cursor: pointer;
+  background-color: #3083e4;
+  color: #ffb600;
+  width: 370px;
+  height: 95px;
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Mouse Memoirs", sans-serif;
+  animation: start-btn-display 5s ease-in-out 1;
+  position: relative;
+}
+.start-play-btn:hover {
+  color: whitesmoke;
+}
+.start-play-btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: orange;
+  transition: transform 300ms ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.start-play-btn:hover::before,
+.start-play-btn:focus::before {
+  transform: scaleX(1);
+}
+.start-play-btn {
+  z-index: 1;
+}
+
+.welcome-msg {
+  font-family: "Mouse Memoirs", sans-serif;
+  color: #3083e4;
+  font-size: 60px;
+}
+
+.player-info-div {
+  height: 100px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+  align-items: center;
+  text-align: center;
+}
+.player-name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+.player-name {
+  font-family: "Mouse Memoirs", sans-serif;
+  color: #3083e4;
+  font-weight: bold;
+}
+.player-1-input {
+  width: 350px;
+  height: 75px;
+  outline: none;
+  font-size: 35px;
+  padding-left: 20px;
+}
+.player-1-input::placeholder {
+  font-size: 25px;
+}
+
+.play-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 7.5%;
+}
+
+.play-btn {
+  cursor: pointer;
+  background-color: #3083e4;
+  color: #ffb600;
+  width: 370px;
+  height: 95px;
+  font-size: 40px;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-weight: bold;
+  position: relative;
+}
+.play-btn:hover {
+  color: whitesmoke;
+}
+.play-btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: orange;
+  transition: transform 300ms ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.play-btn:hover::before,
+.play-btn:focus::before {
+  transform: scaleX(1);
+}
+.play-btn {
+  z-index: 1;
+}
