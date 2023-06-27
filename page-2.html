@@ -23,26 +23,44 @@
             type="text"
             name="pl-1-name"
             placeholder="Enter Your Name"
-            class="player-1-input"
+            class="player-1-input player-1-name"
           />
         </div>
         <div class="player-name-form-2-div">
           <label class="player-name"> Player 2 Name:</label>
           <input
             type="text"
-            name="pl-1-name"
+            name="pl-2-name"
             placeholder="Enter Your Name"
-            class="player-1-input"
+            class="player-1-input player-2-name"
           />
         </div>
-      </form>
+      
     </div>
 
     <div class="play-btn-div">
       <a href="index.html">
-        <button class="play-btn">LET'S PLAY</button>
+        <button type="submit" class="play-btn">LET'S PLAY</button>
       </a>
     </div>
-    <script src="app.js" async defer></script>
+  </form>
+    <script>
+      //
+let form = document.querySelector(".player-name-form");
+let player_1_name = document.querySelector(".player-1-name");
+let player_2_name = document.querySelector(".player-2-name");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let player_1_name_value = player_1_name.value;
+  let player_2_name_value = player_2_name.value;
+  localStorage.setItem("player-1", player_1_name_value);
+  localStorage.setItem("player-2", player_2_name_value);
+  
+  window.location.href = "index.html";
+
+});
+
+    </script>
   </body>
 </html>

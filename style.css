@@ -166,3 +166,27 @@ body {
 .play-btn {
   z-index: 1;
 }
+
+/* **********************MAIN PAGE CSS**************************** */
+.border {
+  border: 1px solid red;
+}
+.title-div {
+  display: flex;
+  justify-content: center;
+}
+.title-img {
+  width: 350px;
+}
+
+.main-sec-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.hide-words-div {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  font-size: 150px;
+}

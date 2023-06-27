@@ -1,6 +1,28 @@
-// ARRAY OF WORDS
+const display_pl_1_name = localStorage.getItem("player-1");
+const display_pl_2_name = localStorage.getItem("player-2");
+const screen = document.querySelector(".hide-words-div");
+
+document.querySelector(".enter-player-name").textContent = display_pl_1_name;
+
+// ARRAY OF WORDS for Player 1
+
+const words_arr = [
+  "witchcraft",
+  "wristwatch",
+  "jukebox",
+  "kiwifruit",
+  "knapsack",
+  "peekaboo",
+  "awkward",
+  "microwave",
+  "syndrome",
+  "knapsack",
+];
 
 // A function that would pick a random word from the above array
+let random_word = Math.floor(Math.random() * words_arr.length);
+let hidden_word = words_arr[random_word];
+screen.append(hidden_word);
 
 // A counter variable for the wrong guess
 
