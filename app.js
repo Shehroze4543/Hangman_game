@@ -73,14 +73,15 @@ document.getElementById("myElement").innerHTML = wrappedString;
 
 const char = document.querySelectorAll(".char");
 for (let i = 0; i < char.length; i++) {
-  char[i].style.opacity = "1";
+  char[i].style.opacity = "0";
+  console.log(char[i].innerHTML);
 }
-console.log(char[i].innerHTML);
 
-console.log(char.value);
-// function reveal_words() {
-//   let e = document.getElementById("e");
-//  if(e.innerHTML === char.innerHTML){
-//   console.log(`hello`);
-//  }
-// }
+function reveal_words() {
+  let e = document.getElementById("e");
+  for (let i = 0; i < char.length; i++) {
+    if (char[i].innerHTML === e.innerHTML) {
+      char[i].style.opacity = "1";
+    }
+  }
+}
