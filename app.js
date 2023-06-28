@@ -22,8 +22,14 @@ const words_arr = [
 // A function that would pick a random word from the above array
 let random_word = Math.floor(Math.random() * words_arr.length);
 let hidden_word = words_arr[random_word];
-screen.append(hidden_word);
+screen.append(hide_words(hidden_word));
 
+function hide_words(str) {
+  let new_str = str.split("").join(" ");
+  return new_str;
+}
+
+console.log(hide_words(hidden_word));
 // A counter variable for the wrong guess
 
 //  a variable that keeps track of the maximum number of wrong guesses that are allowed.
@@ -45,3 +51,36 @@ screen.append(hidden_word);
 //function to compare both scores and determine the winner
 
 // a function to restart the game
+
+function wrapCharactersInDiv(str) {
+  var wrappedString = "";
+
+  for (var i = 0; i < str.length; i++) {
+    var character = str.charAt(i);
+    wrappedString +=
+      '<div class="border">' +
+      '<p class="char">' +
+      character +
+      "</p>" +
+      "</div>";
+  }
+
+  return wrappedString;
+}
+var myString = "shehroze";
+var wrappedString = wrapCharactersInDiv(myString);
+document.getElementById("myElement").innerHTML = wrappedString;
+
+const char = document.querySelectorAll(".char");
+for (let i = 0; i < char.length; i++) {
+  char[i].style.opacity = "1";
+}
+console.log(char[i].innerHTML);
+
+console.log(char.value);
+// function reveal_words() {
+//   let e = document.getElementById("e");
+//  if(e.innerHTML === char.innerHTML){
+//   console.log(`hello`);
+//  }
+// }
