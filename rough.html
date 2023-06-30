@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Button Character Display</title>
+    <script>
+      function updateCharacter() {
+        // Get the div and button elements
+        var div = document.getElementById("character-div");
+        var button = document.getElementById("character-button");
+
+        // Check if the innerHTML of the div matches the innerHTML of the button
+        if (div.innerHTML === button.innerHTML) {
+          // Update the character in the div
+          div.innerHTML = "New Character";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="character-div">Update Character</div>
+    <button id="character-button" onclick="updateCharacter()">
+      Update Character
+    </button>
+  </body>
+</html>

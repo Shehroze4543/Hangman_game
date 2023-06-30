@@ -53,10 +53,10 @@ console.log(hide_words(hidden_word));
 // a function to restart the game
 
 function wrapCharactersInDiv(str) {
-  var wrappedString = "";
+  let wrappedString = "";
 
-  for (var i = 0; i < str.length; i++) {
-    var character = str.charAt(i);
+  for (let i = 0; i < str.length; i++) {
+    let character = str.charAt(i);
     wrappedString +=
       '<div class="border">' +
       '<p class="char">' +
@@ -67,21 +67,95 @@ function wrapCharactersInDiv(str) {
 
   return wrappedString;
 }
-var myString = "shehroze";
-var wrappedString = wrapCharactersInDiv(myString);
+let myString = hidden_word;
+let wrappedString = wrapCharactersInDiv(myString);
 document.getElementById("myElement").innerHTML = wrappedString;
 
+// all of my character classes
 const char = document.querySelectorAll(".char");
+
+// loop over all classes to hide the opacity in each class
 for (let i = 0; i < char.length; i++) {
   char[i].style.opacity = "0";
-  console.log(char[i].innerHTML);
+  char[i].style.transition = "opacity 2s";
 }
+console.log(`//////////////////`);
+const score = document.querySelector(".score");
+let score_counter = 0;
+score.append(score_counter);
 
-function reveal_words() {
-  let e = document.getElementById("e");
+function update_score(s) {
+  score.innerHTML = "";
+  s++;
+  score.append(s);
+}
+let empty_arr = [];
+function reveal_words(alphabet) {
+  let btn = document.getElementById(alphabet);
+  let guessed_word = false;
   for (let i = 0; i < char.length; i++) {
-    if (char[i].innerHTML === e.innerHTML) {
+    if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
+      guessed_word = true;
+    }
+  }
+  let all_guessed_words = true;
+  for (let i = 0; i < char.length; i++) {
+    if (char[i].style.opacity !== "1") {
+      all_guessed_words = false;
+    }
+  }
+  if (all_guessed_words) {
+    update_score(score_counter);
+    guessed_word = false;
+  }
+
+  if (guessed_word === false) {
+    btn.innerHTML = "X";
+    btn.style.color = "red";
+    btn.style.fontSize = "220%";
+    btn.onclick = null;
+    empty_arr.push(btn);
+    console.log(empty_arr);
+    if (empty_arr.length >= 5) {
+      alert(`game over`);
     }
   }
 }
+console.log(empty_arr);
+
+// const char = document.querySelectorAll(".char");
+// let s = document.getElementById("s");
+// // let h = document.getElementById("h");
+// // let r = document.getElementById("r");
+// // let o = document.getElementById("o");
+// // let z = document.getElementById("z");
+// // let a = document.getElementById("a");
+// // let b = document.getElementById("b");
+// // let c = document.getElementById("c");
+// // let d = document.getElementById("d");
+// let char_arr = Array.from(char);
+// char_arr.forEach((char) => {
+//   let index = char_arr.indexOf(char);
+//   if (s.innerHTML === char.innerHTML) {
+//     return (index.style.color = "red");
+//   }
+// });
+//   const chars = document.querySelectorAll(".char");
+//   let s = document.getElementById("s");
+//   let e = document.getElementById("e");
+
+//   let char_arr = Array.from(chars);
+//   char_arr.forEach((char) => {
+//     if (word === char.innerHTML) {
+//       word.style.opacity = "1"; // Change the opacity value as needed
+//     }
+//     if (e.innerHTML === char.innerHTML) {
+//       char.style.opacity = "1"; // Change the opacity value as needed
+//     }
+//   });
+// }
+//   for (let i = 0; i < char.length; i++) {
+//     if (char[i] === s.innerHTML) {
+//       index = i;
+//       break;
