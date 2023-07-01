@@ -239,3 +239,11 @@ body {
 .char {
   color: blue;
 }
+
+.hidden {
+  display: none;
+}
+
+.img-1 {
+  width: 300px;
+}

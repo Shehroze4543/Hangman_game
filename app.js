@@ -1,35 +1,51 @@
 const display_pl_1_name = localStorage.getItem("player-1");
 const display_pl_2_name = localStorage.getItem("player-2");
 const screen = document.querySelector(".hide-words-div");
-
+const images = document.querySelector(".img-1");
 document.querySelector(".enter-player-name").textContent = display_pl_1_name;
 
 // ARRAY OF WORDS for Player 1
 
 const words_arr = [
-  "witchcraft",
-  "wristwatch",
-  "jukebox",
-  "kiwifruit",
-  "knapsack",
-  "peekaboo",
-  "awkward",
-  "microwave",
-  "syndrome",
-  "knapsack",
+  "asd",
+  "bangladesh",
+  "madagascar",
+  "switzerland",
+  "indonesia",
+  "afghanistan",
+  "guatemala",
+  "kazakhstan",
+  "mauritius",
+  "tanzania",
 ];
-
-// A function that would pick a random word from the above array
-let random_word = Math.floor(Math.random() * words_arr.length);
-let hidden_word = words_arr[random_word];
-screen.append(hide_words(hidden_word));
-
-function hide_words(str) {
-  let new_str = str.split("").join(" ");
-  return new_str;
+let words_index = 0;
+function update_words() {
+  let x = words_arr[words_index];
+  words_index++;
+  if (words_index > words_arr.length) {
+    words_index = 9;
+  }
+  return x;
 }
 
-console.log(hide_words(hidden_word));
+console.log(update_words(words_arr));
+console.log(update_words(words_arr));
+console.log(update_words(words_arr));
+console.log(update_words(words_arr));
+
+// A function that would pick a random word from the above array
+
+//let hidden_word = words_arr[random_word];
+//screen.append(hide_words(hidden_word));
+
+// function hide_words(str) {
+//   //let new_str = str.split("").join(" ");
+//   let new_str = str.split(" ").join(",");
+//   //return new_str;
+//   return new_str;
+// }
+
+//console.log(hide_words(hidden_word));
 // A counter variable for the wrong guess
 
 //  a variable that keeps track of the maximum number of wrong guesses that are allowed.
@@ -67,14 +83,16 @@ function wrapCharactersInDiv(str) {
 
   return wrappedString;
 }
-let myString = hidden_word;
+let myString = "shehroze";
 let wrappedString = wrapCharactersInDiv(myString);
 document.getElementById("myElement").innerHTML = wrappedString;
 
+// loop over all classes to hide the opacity in each class
+///function to hide the words
+
+////////////
 // all of my character classes
 const char = document.querySelectorAll(".char");
-
-// loop over all classes to hide the opacity in each class
 for (let i = 0; i < char.length; i++) {
   char[i].style.opacity = "0";
   char[i].style.transition = "opacity 2s";
@@ -89,17 +107,37 @@ function update_score(s) {
   s++;
   score.append(s);
 }
+// IMAGE ARRAY AND IMAGE FUNCTIONS
+
+/////////////////////////////////////////////////////////////
+const images_arr = [
+  "https://www.oligalma.com/downloads/images/hangman/hangman/0.jpg",
+  "https://www.oligalma.com/downloads/images/hangman/hangman/1.jpg",
+  "https://www.oligalma.com/downloads/images/hangman/hangman/3.jpg",
+  "https://www.oligalma.com/downloads/images/hangman/hangman/6.jpg",
+  "https://www.oligalma.com/downloads/images/hangman/hangman/8.jpg",
+  "https://www.oligalma.com/downloads/images/hangman/hangman/10.jpg",
+];
+let img_index = 1;
+function update_imgs() {
+  images.setAttribute("src", images_arr[img_index]);
+  img_index++;
+  if (img_index > images_arr.length) {
+    img_index = 4;
+  }
+}
+/////////////////////////////////////////////////////////////
 let empty_arr = [];
 function reveal_words(alphabet) {
   let btn = document.getElementById(alphabet);
   let guessed_word = false;
+  let all_guessed_words = true;
   for (let i = 0; i < char.length; i++) {
     if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
       guessed_word = true;
     }
   }
-  let all_guessed_words = true;
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
       all_guessed_words = false;
@@ -114,15 +152,17 @@ function reveal_words(alphabet) {
     btn.innerHTML = "X";
     btn.style.color = "red";
     btn.style.fontSize = "220%";
+    update_imgs();
     btn.onclick = null;
     empty_arr.push(btn);
     console.log(empty_arr);
-    if (empty_arr.length >= 5) {
-      alert(`game over`);
+    if (empty_arr.length === 5) {
+      setTimeout(() => {
+        alert(`GAME OVER`);
+      }, "1000");
     }
   }
 }
-console.log(empty_arr);
 
 // const char = document.querySelectorAll(".char");
 // let s = document.getElementById("s");
