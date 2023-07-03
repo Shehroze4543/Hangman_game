@@ -147,11 +147,14 @@ const score = document.querySelector(".score");
 let score_counter = 0;
 score.append(score_counter);
 
-function update_score(s) {
-  score.innerHTML = "";
-  s++;
-  score.append(s);
+function update_score() {
+  if (score_counter < my_name.length) {
+    score.innerHTML = "";
+    score_counter++;
+    score.append(score_counter);
+  }
 }
+
 // IMAGE ARRAY AND IMAGE FUNCTIONS
 
 /////////////////////////////////////////////////////////////
@@ -173,25 +176,35 @@ function update_imgs() {
   }
 }
 
-////////////////////////////////////////////////////////////
-// function next_word() {
-//   let counter = 1;
-//   let my_name_arr = my_name[counter];
-
-//   let wrappedString = wrapCharactersInDiv(my_name_arr);
-//   document.getElementById("myElement").innerHTML = wrappedString;
-
-//   counter++;
-//   const char = document.querySelectorAll(".char");
-//   for (let i = 0; i < char.length; i++) {
-//     char[i].style.opacity = "0";
-//     char[i].style.transition = "opacity 2s";
-//   }
-//   char.append(wrappedString);
-// }
-/////////////////////////////////////////////////////////////
 let empty_arr = [];
-
+let alphabets_arr = [
+  "q",
+  "w",
+  "e",
+  "r",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+];
 function reveal_words(alphabet) {
   let btn = document.getElementById(alphabet);
 
@@ -205,48 +218,52 @@ function reveal_words(alphabet) {
     if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
       guessed_word = true;
-
-      display_new_word = false;
+      all_ones = false;
     }
   }
 
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
-      guessed_word = true;
       all_guessed_words = false;
-      all_ones = false;
-
-      break;
+      all_ones = true;
     }
   }
-  // for (let i = 0; i < char.length; i++) {
-  //   if (char[i].style.opacity === "1") {
-  //     display_new_word = true;
-  //     all_guessed_words = true;
-  //     guessed_word = true;
-  //   }
-  // }
+
   if (all_ones) {
-    display_new_word = true;
+    display_new_word = false;
   }
 
   if (display_new_word) {
-    console.log(`chutiye`);
     setTimeout(() => {
+      update_score(score_counter);
       display_next_word();
+
+      let key = document.querySelectorAll(".key");
+      for (let i = 0; i < key.length; i++) {
+        key[i].innerHTML = alphabets_arr[i];
+        key[i].style.color = "black";
+        console.log(`gandu`);
+      }
+      guessed_word = true;
     }, "1000");
   }
-  if (all_guessed_words) {
-    console.log(`ALL WORDS HAVE BEEN GUESSED`);
-    update_score(score_counter);
-  }
+  // if (all_guessed_words) {
+  //   console.log(`ALL WORDS HAVE BEEN GUESSED`);
+  //   //update_score(score_counter);
+  // }
   if (guessed_word === false) {
     btn.innerHTML = "X";
     btn.style.color = "red";
     btn.style.fontSize = "220%";
     update_imgs();
-    btn.onclick = null;
-    empty_arr.push(btn);
+    //btn.onclick = null;
+    //empty_arr.push(btn);
+    console.log(empty_arr);
+    let new_str = btn;
+    if (!empty_arr.includes(new_str)) {
+      empty_arr.push(new_str);
+    }
+    console.log(new_str);
     console.log(empty_arr);
     if (empty_arr.length === 5) {
       setTimeout(() => {
@@ -272,6 +289,9 @@ function display_next_word() {
       char[i].style.transition = "opacity 2s";
     }
   }, "1000");
+  empty_arr = [];
+  img_index = 1;
+  console.log(empty_arr);
 }
 // if (my_name_index < my_name.length) {
 //   my_name_index++;
