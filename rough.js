@@ -1,5 +1,4 @@
 const display_pl_1_name = localStorage.getItem("player-1");
-const display_pl_2_name = localStorage.getItem("player-2");
 const screen = document.querySelector(".hide-words-div");
 const images = document.querySelector(".img-1");
 document.querySelector(".enter-player-name").textContent = display_pl_1_name;
@@ -18,17 +17,17 @@ const words_arr = [
   "mauritius",
   "tanzania",
 ];
-let words_index = 0;
-function update_words() {
-  let x = words_arr[words_index];
-  words_index++;
-  if (words_index > words_arr.length) {
-    words_index = 9;
-  }
-  return x;
-}
+// let words_index = 0;
+// function update_words() {
+//   let x = words_arr[words_index];
+//   words_index++;
+//   if (words_index > words_arr.length) {
+//     words_index = 9;
+//   }
+//   return x;
+// }
 
-console.log(update_words(words_arr));
+// console.log(update_words(words_arr));
 
 // A function that would pick a random word from the above array
 
@@ -89,7 +88,6 @@ function wrapCharactersInDiv(arr) {
 //////////////
 
 /////////////
-let myString = "pakistan";
 
 let my_name = ["ali", "shigri", "bano"];
 let wrappedString = wrapCharactersInDiv(my_name);
@@ -101,60 +99,41 @@ document.getElementById("myElement").innerHTML = wrappedString;
 ////////////
 // all of my character classes
 let char = document.querySelectorAll(".char");
-
-function hh_ii() {
-  let char = document.querySelectorAll(".char");
-  for (let i = 0; i < char.length; i++) {
-    char[i].style.opacity = "0";
-    char[i].style.transition = "opacity 2s";
-  }
+for (let i = 0; i < char.length; i++) {
+  char[i].style.opacity = "0";
+  char[i].style.transition = "opacity 2s";
 }
-console.log(hh_ii());
 
 let my_name_index = 0;
 ////////////////////////////////////////
 
-/////////////////////////
-function update_name() {
-  let char = document.querySelectorAll(".char");
-  my_name[1].style.opacity = "0";
-  let next_word = my_name[1];
-  for (let i = 0; i < char.length; i++) {
-    char[i].style.opacity = "0";
-
-    if (char[i].style.opacity === "1") {
-      my_name_index = i;
-    }
-  }
-  let wrappedString = wrapCharactersInDiv(next_word);
-  document.getElementById("myElement").innerHTML = wrappedString;
-
-  for (let i = 0; i < char.length; i++) {
-    char[i].style.opacity = "0";
-    char[i].style.transition = "opacity 2s";
-  }
-
-  for (let i = 0; i < char.length; i++) {
-    if (alphabet === char[i].innerHTML) {
-      char[i].style.opacity = "1";
-      guessed_word = true;
-      display_new_word = false;
-    }
-  }
-}
 console.log(`//////////////////`);
 const score = document.querySelector(".score");
 let score_counter = 0;
+let increment = 5;
+let score_arr = [];
 score.append(score_counter);
+let player_1_score = [];
 
 function update_score() {
-  if (score_counter < my_name.length) {
+  while (score_arr.length < my_name.length) {
     score.innerHTML = "";
-    score_counter++;
+    score_counter = score_counter + 5;
     score.append(score_counter);
+    score_arr.push(score_counter);
+    break;
   }
 }
 
+function final_score() {
+  while (score_arr.length > my_name.length) {
+    player_1_score.push(score_counter);
+    console.log(player_1_score);
+  }
+}
+function score_pl_1(arr) {
+  return arr.reduce((acc, cur) => acc + cur, 0);
+}
 // IMAGE ARRAY AND IMAGE FUNCTIONS
 
 /////////////////////////////////////////////////////////////
@@ -211,7 +190,7 @@ function reveal_words(alphabet) {
   let guessed_word = false;
   let all_ones = true;
   let display_new_word = true;
-  let all_guessed_words = true;
+  //let all_guessed_words = true;
   const char = document.querySelectorAll(".char");
 
   for (let i = 0; i < char.length; i++) {
@@ -236,13 +215,19 @@ function reveal_words(alphabet) {
   if (display_new_word) {
     setTimeout(() => {
       update_score(score_counter);
+      player_1_score.shift();
+      player_1_score.push(score_counter);
+      console.log(player_1_score);
+      localStorage.setItem("player_1_score", player_1_score);
       display_next_word();
+      img_index = 0;
+      update_imgs();
 
       let key = document.querySelectorAll(".key");
       for (let i = 0; i < key.length; i++) {
         key[i].innerHTML = alphabets_arr[i];
         key[i].style.color = "black";
-        console.log(`gandu`);
+        //console.log(`gandu`);
       }
       guessed_word = true;
     }, "1000");
@@ -281,7 +266,7 @@ function display_next_word() {
   setTimeout(() => {
     let wrappedString = wrapCharactersInDiv(my_name);
     document.getElementById("myElement").innerHTML = wrappedString;
-
+    //hh_ii();
     char = document.querySelectorAll(".char");
 
     for (let i = 0; i < char.length; i++) {
@@ -291,8 +276,12 @@ function display_next_word() {
   }, "1000");
   empty_arr = [];
   img_index = 1;
-  console.log(empty_arr);
+  //console.log(empty_arr);
 }
+
+console.log(player_1_score);
+
+const score_1 = localStorage.getItem("player_1_score", player_1_score);
 // if (my_name_index < my_name.length) {
 //   my_name_index++;
 //   let next_worddd = my_name[my_name_index];
