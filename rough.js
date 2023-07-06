@@ -125,15 +125,15 @@ function update_score() {
   }
 }
 
-function final_score() {
-  while (score_arr.length > my_name.length) {
-    player_1_score.push(score_counter);
-    console.log(player_1_score);
-  }
-}
-function score_pl_1(arr) {
-  return arr.reduce((acc, cur) => acc + cur, 0);
-}
+// function final_score() {
+//   while (score_arr.length > my_name.length) {
+//     player_1_score.push(score_counter);
+//     console.log(player_1_score);
+//   }
+// }
+// function score_pl_1(arr) {
+//   return arr.reduce((acc, cur) => acc + cur, 0);
+// }
 // IMAGE ARRAY AND IMAGE FUNCTIONS
 
 /////////////////////////////////////////////////////////////
@@ -203,7 +203,7 @@ function reveal_words(alphabet) {
 
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
-      all_guessed_words = false;
+      //all_guessed_words = false;
       all_ones = true;
     }
   }
@@ -227,7 +227,6 @@ function reveal_words(alphabet) {
       for (let i = 0; i < key.length; i++) {
         key[i].innerHTML = alphabets_arr[i];
         key[i].style.color = "black";
-        //console.log(`gandu`);
       }
       guessed_word = true;
     }, "1000");
