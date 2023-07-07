@@ -22,25 +22,15 @@
       <span class="score"></span>
     </div>
 
-
     <!-- hidden words containers -->
     <div class="main-sec-div">
       <div class="left-sec-div">
-        <div class="categories-div cat">
-          <h1 class="cat-heading cat">
-            Select a category
-          </h1>
-          <button class="cat-1-btn cat" onclick="chose_country()">Country</button>
-          <button class="cat-1-btn cat" onclick="chose_animal()">Animal</button>
-    
-        </div>
-        <!-- <div class="hide-words-div" id="my-hidden-words">-->
+        <div class="hide-words-div" id="my-hidden-words">
           <!-- DISPLAY HIDDEN WORDS  -->
-        <!--</div> -->
-        ` 
-        
+        </div>
+        `
+        <div></div>
       </div>
-      <div class="my-box hidden" id="myElement"></div>
       <div class="hangman-imgs-container-div">
         <div class="img-divs">
           <img src="https://www.oligalma.com/downloads/images/hangman/hangman/0.jpg" alt="" class="img-1">
@@ -52,16 +42,16 @@
         </div>
       </div>
     </div>
-   
+    <div class="my-box" id="myElement">
 
-   
-    <div class="keyboard-div ">
-      <div class="result-div">
+    </div>
+   <div class="keyboard-div ">
+      <div class="result-div hidden">
         <a href="\player_2.html" class="nxt-pl-link hidden">
-        <button class="nxt-pl ">NEXT PLAYER</button>
+        <button class="nxt-pl ">SEE THE SCOREBOARD</button>
         </a>
       </div>
-      <div class="kb-div  ">
+      <div class="kb-div ">
       <div class="key-board-line-1">
       <button class="key" id="q" onclick="reveal_words('q')">q</button>
       <button class="key" id="w" onclick="reveal_words('w')">w</button>
@@ -99,6 +89,6 @@
     <!--  hangman images section-->
     <!-- a container that contains all the alphabets -->
 
-    <script src="app.js" async defer></script>
+    <script src="player_2.js" async defer></script>
   </body>
 </html>

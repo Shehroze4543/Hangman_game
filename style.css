@@ -204,7 +204,7 @@ body {
 
 .main-sec-div {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .hide-words-div {
@@ -217,9 +217,14 @@ body {
 .keyboard-div {
   padding-left: 300px;
   margin-top: 50px;
-  border: 1px solid red;
+
+  display: flex;
+  justify-content: center;
 }
-.key-board-line-1 {
+.kb-div {
+  display: flex;
+
+  width: 1000px;
 }
 .key {
   cursor: pointer;
@@ -246,4 +251,27 @@ body {
 
 .img-1 {
   width: 300px;
+}
+
+.result-div {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  align-items: center;
+}
+.nxt-pl {
+  cursor: pointer;
+  height: 100px;
+  width: 300px;
+}
+
+.categories-div {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.cat-1-btn {
+  height: 75px;
 }

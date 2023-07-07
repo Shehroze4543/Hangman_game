@@ -1,37 +1,33 @@
 const display_pl_1_name = localStorage.getItem("player-1");
-const display_pl_2_name = localStorage.getItem("player-2");
 const screen = document.querySelector(".hide-words-div");
 const images = document.querySelector(".img-1");
+images.classList.add("hidden");
+const next_pl_btn = document.querySelector(".nxt-pl-link");
+const keyboard = document.querySelector(".kb-div");
+keyboard.classList.add("hidden");
+const movie = document.querySelector(".movie");
 document.querySelector(".enter-player-name").textContent = display_pl_1_name;
 
-// ARRAY OF WORDS for Player 1
-
-const words_arr = [
-  "asd",
-  "bangladesh",
-  "madagascar",
-  "switzerland",
-  "indonesia",
-  "afghanistan",
-  "guatemala",
-  "kazakhstan",
-  "mauritius",
-  "tanzania",
-];
-let words_index = 0;
-function update_words() {
-  let x = words_arr[words_index];
-  words_index++;
-  if (words_index > words_arr.length) {
-    words_index = 9;
-  }
-  return x;
+function hide_keyboard() {
+  keyboard.classList.add("hidden");
+  next_pl_btn.classList.remove("hidden");
 }
 
-console.log(update_words(words_arr));
-console.log(update_words(words_arr));
-console.log(update_words(words_arr));
-console.log(update_words(words_arr));
+// ARRAY OF WORDS for Player 1
+//
+// function update_words() {
+//   let x = words_arr[words_index];
+//   words_index++;
+//   if (words_index > words_arr.length) {
+//     words_index = 9;
+//   }
+//   return x;
+// }
+
+// console.log(update_words(words_arr));
+// console.log(update_words(words_arr));
+// console.log(update_words(words_arr));
+// console.log(update_words(words_arr));
 
 // A function that would pick a random word from the above array
 
@@ -68,7 +64,11 @@ console.log(update_words(words_arr));
 
 // a function to restart the game
 
-function wrapCharactersInDiv(str) {
+let count = 0;
+function wrapCharactersInDiv(arr) {
+  let curr_arr = count % arr.length;
+  let str = arr[curr_arr];
+
   let wrappedString = "";
 
   for (let i = 0; i < str.length; i++) {
@@ -80,32 +80,47 @@ function wrapCharactersInDiv(str) {
       "</p>" +
       "</div>";
   }
-
+  count++;
+  if (count > arr.length) {
+    hide_keyboard();
+    return "";
+  }
   return wrappedString;
 }
-let myString = "shehroze";
-let wrappedString = wrapCharactersInDiv(myString);
-document.getElementById("myElement").innerHTML = wrappedString;
+let my_name = ["sh", "ss", "ss"];
 
+let wrappedString = wrapCharactersInDiv(my_name);
+document.getElementById("myElement").innerHTML = wrappedString;
+let char = document.querySelectorAll(".char");
+for (let i = 0; i < char.length; i++) {
+  char[i].style.opacity = "0";
+  char[i].style.transition = "opacity 2s";
+}
+
+let my_name_index = 0;
 // loop over all classes to hide the opacity in each class
 ///function to hide the words
 
 ////////////
 // all of my character classes
-const char = document.querySelectorAll(".char");
-for (let i = 0; i < char.length; i++) {
-  char[i].style.opacity = "0";
-  char[i].style.transition = "opacity 2s";
-}
-console.log(`//////////////////`);
+
+////////////////////////////////////
+
 const score = document.querySelector(".score");
 let score_counter = 0;
+let increment = 5;
+let score_arr = [];
 score.append(score_counter);
+let player_1_score = [];
 
-function update_score(s) {
-  score.innerHTML = "";
-  s++;
-  score.append(s);
+function update_score() {
+  while (score_arr.length < my_name.length) {
+    score.innerHTML = "";
+    score_counter = score_counter + increment;
+    score.append(score_counter);
+    score_arr.push(score_counter);
+    break;
+  }
 }
 // IMAGE ARRAY AND IMAGE FUNCTIONS
 
@@ -128,24 +143,74 @@ function update_imgs() {
 }
 /////////////////////////////////////////////////////////////
 let empty_arr = [];
+let alphabets_arr = [
+  "q",
+  "w",
+  "e",
+  "r",
+  "t",
+  "y",
+  "u",
+  "i",
+  "o",
+  "p",
+  "a",
+  "s",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "z",
+  "x",
+  "c",
+  "v",
+  "b",
+  "n",
+  "m",
+];
 function reveal_words(alphabet) {
   let btn = document.getElementById(alphabet);
+
   let guessed_word = false;
-  let all_guessed_words = true;
+  let all_ones = true;
+  let display_new_words = true;
+
+  const char = document.querySelectorAll(".char");
   for (let i = 0; i < char.length; i++) {
     if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
       guessed_word = true;
+      all_ones = false;
     }
   }
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
-      all_guessed_words = false;
+      all_ones = true;
     }
   }
-  if (all_guessed_words) {
-    update_score(score_counter);
-    guessed_word = false;
+  if (all_ones) {
+    display_new_words = false;
+  }
+  if (display_new_words) {
+    setTimeout(() => {
+      update_score(score_counter);
+      player_1_score.shift();
+      player_1_score.push(score_counter);
+      localStorage.setItem("player_1_score", player_1_score);
+      display_next_word();
+      img_index = 0;
+      update_imgs();
+
+      let key = document.querySelectorAll(".key");
+      for (let i = 0; i < key.length; i++) {
+        key[i].innerHTML = alphabets_arr[i];
+        key[i].style.color = "black";
+      }
+      guessed_word = true;
+    }, "1000");
   }
 
   if (guessed_word === false) {
@@ -153,15 +218,76 @@ function reveal_words(alphabet) {
     btn.style.color = "red";
     btn.style.fontSize = "220%";
     update_imgs();
-    btn.onclick = null;
-    empty_arr.push(btn);
-    console.log(empty_arr);
+    let new_str = btn;
+    if (!empty_arr.includes(new_str)) {
+      empty_arr.push(new_str);
+    }
+
     if (empty_arr.length === 5) {
-      setTimeout(() => {
-        alert(`GAME OVER`);
-      }, "1000");
+      hide_keyboard();
     }
   }
+}
+
+function display_next_word() {
+  for (let i = 0; i < char.length; i++) {
+    char[i].remove();
+  }
+
+  setTimeout(() => {
+    let wrappedString = wrapCharactersInDiv(my_name);
+    document.getElementById("myElement").innerHTML = wrappedString;
+    let char = document.querySelectorAll(".char");
+
+    for (let i = 0; i < char.length; i++) {
+      char[i].style.opacity = "0";
+      char[i].style.transition = "opacity 2s";
+    }
+  }, "1000");
+  empty_arr = [];
+  img_index = 1;
+}
+let my_country = ["c", "guatemala", "kazakhstan"];
+let my_animal = ["c", "hummingbird", "nightingale", "rattlesnake"];
+let hide_box = document.querySelector(".my-box");
+
+function chose_country() {
+  images.classList.remove("hidden");
+  keyboard.classList.remove("hidden");
+  let cat = document.querySelectorAll(".cat");
+  for (let i = 0; i < cat.length; i++) {
+    cat[i].classList.add("hidden");
+  }
+  hide_box.classList.remove("hidden");
+
+  my_name.splice(0, my_name.length, ...my_country);
+  let wrappedString = wrapCharactersInDiv(my_name);
+  document.getElementById("myElement").innerHTML = wrappedString;
+  char = document.querySelectorAll(".char");
+  for (let i = 0; i < char.length; i++) {
+    char[i].style.opacity = "0";
+    char[i].style.transition = "opacity 2s";
+  }
+}
+function chose_animal() {
+  setTimeout(() => {
+    images.classList.remove("hidden");
+    keyboard.classList.remove("hidden");
+    let cat = document.querySelectorAll(".cat");
+    for (let i = 0; i < cat.length; i++) {
+      cat[i].classList.add("hidden");
+    }
+    hide_box.classList.remove("hidden");
+
+    my_name.splice(0, my_name.length, ...my_animal);
+    let wrappedString = wrapCharactersInDiv(my_name);
+    document.getElementById("myElement").innerHTML = wrappedString;
+    char = document.querySelectorAll(".char");
+    for (let i = 0; i < char.length; i++) {
+      char[i].style.opacity = "0";
+      char[i].style.transition = "opacity 2s";
+    }
+  }, "1000");
 }
 
 // const char = document.querySelectorAll(".char");

@@ -5,19 +5,19 @@ document.querySelector(".enter-player-name").textContent = display_pl_1_name;
 
 // ARRAY OF WORDS for Player 1
 
-const words_arr = [
-  "asd",
-  "bangladesh",
-  "madagascar",
-  "switzerland",
-  "indonesia",
-  "afghanistan",
-  "guatemala",
-  "kazakhstan",
-  "mauritius",
-  "tanzania",
-];
-// let words_index = 0;
+// const words_arr = [
+//   "asd",
+//   "bangladesh",
+//   "madagascar",
+//   "switzerland",
+//   "indonesia",
+//   "afghanistan",
+//   "guatemala",
+//   "kazakhstan",
+//   "mauritius",
+//   "tanzania",
+// ];
+// // let words_index = 0;
 // function update_words() {
 //   let x = words_arr[words_index];
 //   words_index++;
@@ -104,7 +104,6 @@ for (let i = 0; i < char.length; i++) {
   char[i].style.transition = "opacity 2s";
 }
 
-let my_name_index = 0;
 ////////////////////////////////////////
 
 console.log(`//////////////////`);
@@ -247,8 +246,7 @@ function reveal_words(alphabet) {
     if (!empty_arr.includes(new_str)) {
       empty_arr.push(new_str);
     }
-    console.log(new_str);
-    console.log(empty_arr);
+
     if (empty_arr.length === 5) {
       setTimeout(() => {
         alert(`GAME OVER`);
@@ -278,9 +276,6 @@ function display_next_word() {
   //console.log(empty_arr);
 }
 
-console.log(player_1_score);
-
-const score_1 = localStorage.getItem("player_1_score", player_1_score);
 // if (my_name_index < my_name.length) {
 //   my_name_index++;
 //   let next_worddd = my_name[my_name_index];

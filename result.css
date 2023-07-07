@@ -1,0 +1,15 @@
+body {
+  background-image: url("https://cdn.wallpapersafari.com/6/6/08c4mH.jpg");
+  width: 100%;
+  padding-bottom: 500px;
+}
+
+.container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  top: 350px;
+}
