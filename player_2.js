@@ -1,14 +1,18 @@
-const display_pl_2_name = localStorage.getItem(".player-2");
-document.querySelector(".enter-player-name").textContent = display_pl_2_name;
+const display_pl_2_name = localStorage.getItem("player-2");
 const images = document.querySelector(".img-1");
+const img_box = document.querySelector(".img-div");
 const screen = document.querySelector(".hide-words-div");
 const next_pl_btn = document.querySelector(".nxt-pl-link");
 const keyboard = document.querySelector(".kb-div");
+const initial_val = 0;
+localStorage.setItem("player_2_score", initial_val);
 
+document.querySelector(".enter-player-name").textContent = display_pl_2_name;
 function hide_keyboard() {
   keyboard.classList.add("hidden");
   next_pl_btn.classList.remove("hidden");
 }
+
 let count = 0;
 
 function wrapCharactersInDiv(arr) {
@@ -28,6 +32,8 @@ function wrapCharactersInDiv(arr) {
   count++;
   if (count > arr.length) {
     hide_keyboard();
+    img_box.style.opacity = "0";
+    return "";
   }
   return wrapped_string;
 }
@@ -130,9 +136,11 @@ function reveal_words(alphabet) {
   }
   if (display_new_words) {
     setTimeout(() => {
+      localStorage.removeItem("player_2_score", player_2_score);
       update_score(score_counter);
       player_2_score.shift();
-      localStorage.setItem("player_1_score", player_2_score);
+      player_2_score.push(score_counter);
+      localStorage.setItem("player_2_score", player_2_score);
       display_next_word();
       img_index = 0;
       update_imgs();
@@ -140,7 +148,7 @@ function reveal_words(alphabet) {
       let key = document.querySelectorAll(".key");
       for (let i = 0; i < key.length; i++) {
         key[i].innerHTML = alphabets_arr[i];
-        key[i].style.color = "black";
+        key[i].style.color = "whitesmoke";
       }
       guessed_word = true;
     }, "1000");
@@ -149,7 +157,7 @@ function reveal_words(alphabet) {
   if (guessed_word === false) {
     btn.innerHTML = "X";
     btn.style.color = "red";
-    btn.style.fontSize = "220%";
+    //btn.style.fontSize = "220%";
     update_imgs();
     let new_str = btn;
     if (!empty_arr.includes(new_str)) {
@@ -168,7 +176,7 @@ function display_next_word() {
   setTimeout(() => {
     let wrapped_string = wrapCharactersInDiv(my_name);
     document.getElementById("myElement").innerHTML = wrapped_string;
-    char = document.querySelectorAll(".char");
+    let char = document.querySelectorAll(".char");
     for (let i = 0; i < char.length; i++) {
       char[i].style.opacity = "0";
       char[i].style.transition = "opacity 2s";
@@ -176,4 +184,52 @@ function display_next_word() {
   }, "1000");
   empty_arr = [];
   img_index = 1;
+}
+
+let my_country = ["x", "mauritius", "tanzania", "luxembourg"];
+let my_animal = ["x", "rhinoceros", "caterpillar", "woodpecker"];
+
+const hide_box = document.querySelector(".my-box");
+
+function chose_country() {
+  hide_box.style.opacity = "1";
+  keyboard.style.opacity = "1";
+  img_box.style.opacity = "1";
+  img_box.style.transition = "opacity 1s";
+  hide_box.style.transition = "opacity 1s";
+  keyboard.style.transition = "opacity 5s";
+  let cat = document.querySelectorAll(".cat");
+  for (let i = 0; i < cat.length; i++) {
+    cat[i].classList.add("hidden");
+  }
+  my_name.splice(0, my_name.length, ...my_country);
+  let wrappedString = wrapCharactersInDiv(my_name);
+  document.getElementById("myElement").innerHTML = wrappedString;
+
+  char = document.querySelectorAll(".char");
+  for (let i = 0; i < char.length; i++) {
+    char[i].style.opacity = "0";
+    char[i].style.transition = "opacity 2s";
+  }
+}
+
+function chose_animal() {
+  hide_box.style.opacity = "1";
+  keyboard.style.opacity = "1";
+  img_box.style.opacity = "1";
+  img_box.style.transition = "opacity 1s";
+  hide_box.style.transition = "opacity 1s";
+  keyboard.style.transition = "opacity 5s";
+  let cat = document.querySelectorAll(".cat");
+  for (let i = 0; i < cat.length; i++) {
+    cat[i].classList.add("hidden");
+  }
+  my_name.splice(0, my_name.length, ...my_animal);
+  let wrapped_string = wrapCharactersInDiv(my_name);
+  document.getElementById("myElement").innerHTML = wrapped_string;
+  char = document.querySelectorAll(".char");
+  for (let i = 0; i < char.length; i++) {
+    char[i].style.opacity = "0";
+    char[i].style.transition = "opacity 2s";
+  }
 }

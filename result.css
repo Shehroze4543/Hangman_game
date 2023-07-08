@@ -5,11 +5,79 @@ body {
 }
 
 .container {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   position: relative;
   top: 350px;
+}
+
+.title-div {
+  display: flex;
+  justify-content: center;
+}
+.title-img {
+  width: 350px;
+}
+
+.score-card-div {
+  margin-top: -250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.box-1,
+.box-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 100px;
+  opacity: 0;
+  background-color: dodgerblue;
+  color: #ffb600;
+  font-family: "sans-serif";
+  border-radius: 30px;
+}
+.hidden {
+  display: none !important;
+}
+
+.text {
+  font-weight: bold;
+  font-size: 50px;
+}
+.tie-div,
+.winner-div {
+  margin-top: 50px;
+}
+.tie {
+  width: 300px;
+  font-family: "Russo One", sans-serif;
+  letter-spacing: 5px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-shadow: 10px 5px 5px black;
+  padding: 15px;
+}
+
+.winner-div {
+  font-family: "Russo One", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid black;
+  width: fit-content;
+  height: 80px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-shadow: 10px 5px 5px black;
+}
+.center-div {
+  display: flex;
+  justify-content: center;
 }

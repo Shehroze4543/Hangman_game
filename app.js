@@ -1,11 +1,13 @@
 const display_pl_1_name = localStorage.getItem("player-1");
+const initla_val = 0;
+localStorage.setItem("player_1_score", initla_val);
+
 const screen = document.querySelector(".hide-words-div");
+const img_box = document.querySelector(".img-div");
 const images = document.querySelector(".img-1");
-images.classList.add("hidden");
 const next_pl_btn = document.querySelector(".nxt-pl-link");
 const keyboard = document.querySelector(".kb-div");
-keyboard.classList.add("hidden");
-const movie = document.querySelector(".movie");
+
 document.querySelector(".enter-player-name").textContent = display_pl_1_name;
 
 function hide_keyboard() {
@@ -83,6 +85,7 @@ function wrapCharactersInDiv(arr) {
   count++;
   if (count > arr.length) {
     hide_keyboard();
+    img_box.style.opacity = "0";
     return "";
   }
   return wrappedString;
@@ -207,7 +210,7 @@ function reveal_words(alphabet) {
       let key = document.querySelectorAll(".key");
       for (let i = 0; i < key.length; i++) {
         key[i].innerHTML = alphabets_arr[i];
-        key[i].style.color = "black";
+        key[i].style.color = "whitesmoke";
       }
       guessed_word = true;
     }, "1000");
@@ -216,7 +219,7 @@ function reveal_words(alphabet) {
   if (guessed_word === false) {
     btn.innerHTML = "X";
     btn.style.color = "red";
-    btn.style.fontSize = "220%";
+    //btn.style.fontSize = "220%";
     update_imgs();
     let new_str = btn;
     if (!empty_arr.includes(new_str)) {
@@ -247,20 +250,45 @@ function display_next_word() {
   empty_arr = [];
   img_index = 1;
 }
-let my_country = ["c", "guatemala", "kazakhstan"];
+let my_country = ["c", "guatemala", "kazakhstan", "azerbaijan"];
 let my_animal = ["c", "hummingbird", "nightingale", "rattlesnake"];
 let hide_box = document.querySelector(".my-box");
 
 function chose_country() {
-  images.classList.remove("hidden");
-  keyboard.classList.remove("hidden");
+  hide_box.style.opacity = "1";
+  keyboard.style.opacity = "1";
+  img_box.style.opacity = "1";
+  img_box.style.transition = "opacity 1s";
+  hide_box.style.transition = "opacity 1s";
+  keyboard.style.transition = "opacity 5s";
   let cat = document.querySelectorAll(".cat");
   for (let i = 0; i < cat.length; i++) {
     cat[i].classList.add("hidden");
   }
-  hide_box.classList.remove("hidden");
 
   my_name.splice(0, my_name.length, ...my_country);
+  let wrappedString = wrapCharactersInDiv(my_name);
+  document.getElementById("myElement").innerHTML = wrappedString;
+
+  char = document.querySelectorAll(".char");
+  for (let i = 0; i < char.length; i++) {
+    char[i].style.opacity = "0";
+    char[i].style.transition = "opacity 2s";
+  }
+}
+function chose_animal() {
+  hide_box.style.opacity = "1";
+  keyboard.style.opacity = "1";
+  img_box.style.opacity = "1";
+  img_box.style.transition = "opacity 1s";
+  hide_box.style.transition = "opacity 1s";
+  keyboard.style.transition = "opacity 5s";
+  let cat = document.querySelectorAll(".cat");
+  for (let i = 0; i < cat.length; i++) {
+    cat[i].classList.add("hidden");
+  }
+
+  my_name.splice(0, my_name.length, ...my_animal);
   let wrappedString = wrapCharactersInDiv(my_name);
   document.getElementById("myElement").innerHTML = wrappedString;
   char = document.querySelectorAll(".char");
@@ -269,59 +297,3 @@ function chose_country() {
     char[i].style.transition = "opacity 2s";
   }
 }
-function chose_animal() {
-  setTimeout(() => {
-    images.classList.remove("hidden");
-    keyboard.classList.remove("hidden");
-    let cat = document.querySelectorAll(".cat");
-    for (let i = 0; i < cat.length; i++) {
-      cat[i].classList.add("hidden");
-    }
-    hide_box.classList.remove("hidden");
-
-    my_name.splice(0, my_name.length, ...my_animal);
-    let wrappedString = wrapCharactersInDiv(my_name);
-    document.getElementById("myElement").innerHTML = wrappedString;
-    char = document.querySelectorAll(".char");
-    for (let i = 0; i < char.length; i++) {
-      char[i].style.opacity = "0";
-      char[i].style.transition = "opacity 2s";
-    }
-  }, "1000");
-}
-
-// const char = document.querySelectorAll(".char");
-// let s = document.getElementById("s");
-// // let h = document.getElementById("h");
-// // let r = document.getElementById("r");
-// // let o = document.getElementById("o");
-// // let z = document.getElementById("z");
-// // let a = document.getElementById("a");
-// // let b = document.getElementById("b");
-// // let c = document.getElementById("c");
-// // let d = document.getElementById("d");
-// let char_arr = Array.from(char);
-// char_arr.forEach((char) => {
-//   let index = char_arr.indexOf(char);
-//   if (s.innerHTML === char.innerHTML) {
-//     return (index.style.color = "red");
-//   }
-// });
-//   const chars = document.querySelectorAll(".char");
-//   let s = document.getElementById("s");
-//   let e = document.getElementById("e");
-
-//   let char_arr = Array.from(chars);
-//   char_arr.forEach((char) => {
-//     if (word === char.innerHTML) {
-//       word.style.opacity = "1"; // Change the opacity value as needed
-//     }
-//     if (e.innerHTML === char.innerHTML) {
-//       char.style.opacity = "1"; // Change the opacity value as needed
-//     }
-//   });
-// }
-//   for (let i = 0; i < char.length; i++) {
-//     if (char[i] === s.innerHTML) {
-//       index = i;
-//       break;

@@ -7,6 +7,12 @@
     <title>HANGMAN GAME</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Mouse+Memoirs&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,24 +21,37 @@
       <img src="\imgs\Capture1.PNG" alt="" class="title-img" />
     </div>
     <!-- player-name and score container -->
-    <h1>hello <span class="enter-player-name"></span></h1>
-
-    <div class="score-sec-div">
-      <h1>SCORE:</h1>
-      <span class="score"></span>
+    <div class="top-sec-div">
+      <div class="name-div">
+      <h1>Player 2: <span class="enter-player-name"></span></h1>
     </div>
+    <div class="score-sec-div name-div">
+      <h1>Score:
+      <span class="score"></span></h1>
+    </div>
+  </div>
+
 
     <!-- hidden words containers -->
     <div class="main-sec-div">
       <div class="left-sec-div">
-        <div class="hide-words-div" id="my-hidden-words">
-          <!-- DISPLAY HIDDEN WORDS  -->
+        <div class="categories-div cat">
+          <h1 class="cat-heading cat name-div">
+            Select a category
+          </h1>
+          <button class="cat-1-btn cat play-btn" onclick="chose_country()">Country</button>
+          <button class="cat-1-btn cat play-btn" onclick="chose_animal()">Animal</button>
+    
         </div>
-        `
-        <div></div>
+        <!-- <div class="hide-words-div" id="my-hidden-words">-->
+          <!-- DISPLAY HIDDEN WORDS  -->
+        <!--</div> -->
+        ` 
+        
       </div>
+      <div class="my-box" id="myElement"></div>
       <div class="hangman-imgs-container-div">
-        <div class="img-divs">
+        <div class="img-div">
           <img src="https://www.oligalma.com/downloads/images/hangman/hangman/0.jpg" alt="" class="img-1">
           <img src="https://www.oligalma.com/downloads/images/hangman/hangman/1.jpg" alt="" class="img-1 hidden">
  <img src="https://www.oligalma.com/downloads/images/hangman/hangman/3.jpg" alt="" class="img-1 hidden">
@@ -42,16 +61,16 @@
         </div>
       </div>
     </div>
-    <div class="my-box" id="myElement">
+   
 
-    </div>
-   <div class="keyboard-div ">
-      <div class="result-div hidden">
-        <a href="\player_2.html" class="nxt-pl-link hidden">
-        <button class="nxt-pl ">SEE THE SCOREBOARD</button>
+   
+    <div class="keyboard-div ">
+      <div class="result-div">
+        <a href="\results.html" class="nxt-pl-link hidden">
+        <button class="nxt-pl play-btn">See Scoreboard </button>
         </a>
       </div>
-      <div class="kb-div ">
+      <div class="kb-div  ">
       <div class="key-board-line-1">
       <button class="key" id="q" onclick="reveal_words('q')">q</button>
       <button class="key" id="w" onclick="reveal_words('w')">w</button>
