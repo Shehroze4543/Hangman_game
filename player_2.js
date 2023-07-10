@@ -114,7 +114,7 @@ let alphabets_arr = [
 function reveal_words(alphabet) {
   let btn = document.getElementById(alphabet);
   let guessed_word = false;
-  let all_ones = true;
+  let all_opacity = true;
   let display_new_words = true;
 
   const char = document.querySelectorAll(".char");
@@ -123,15 +123,15 @@ function reveal_words(alphabet) {
     if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
       guessed_word = true;
-      all_ones = false;
+      all_opacity = false;
     }
   }
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
-      all_ones = true;
+      all_opacity = true;
     }
   }
-  if (all_ones) {
+  if (all_opacity) {
     display_new_words = false;
   }
   if (display_new_words) {
@@ -165,6 +165,9 @@ function reveal_words(alphabet) {
     }
     if (empty_arr.length === 5) {
       hide_keyboard();
+      for (let i = 0; i < char.length; i++) {
+        char[i].style.opacity = "1";
+      }
     }
   }
 }

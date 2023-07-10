@@ -1,7 +1,11 @@
+// Player 1 name
 const display_pl_1_name = localStorage.getItem("player-1");
+//player 1 initial score
 const initla_val = 0;
+// Set the value of "player_1_score" in localStorage to initial_val
 localStorage.setItem("player_1_score", initla_val);
 
+// My DOM Elements
 const screen = document.querySelector(".hide-words-div");
 const img_box = document.querySelector(".img-div");
 const images = document.querySelector(".img-1");
@@ -10,62 +14,13 @@ const keyboard = document.querySelector(".kb-div");
 
 document.querySelector(".enter-player-name").textContent = display_pl_1_name;
 
+// func to hide keyboard after the player exceeds the number of wrong guesses
 function hide_keyboard() {
   keyboard.classList.add("hidden");
   next_pl_btn.classList.remove("hidden");
 }
 
-// ARRAY OF WORDS for Player 1
-//
-// function update_words() {
-//   let x = words_arr[words_index];
-//   words_index++;
-//   if (words_index > words_arr.length) {
-//     words_index = 9;
-//   }
-//   return x;
-// }
-
-// console.log(update_words(words_arr));
-// console.log(update_words(words_arr));
-// console.log(update_words(words_arr));
-// console.log(update_words(words_arr));
-
-// A function that would pick a random word from the above array
-
-//let hidden_word = words_arr[random_word];
-//screen.append(hide_words(hidden_word));
-
-// function hide_words(str) {
-//   //let new_str = str.split("").join(" ");
-//   let new_str = str.split(" ").join(",");
-//   //return new_str;
-//   return new_str;
-// }
-
-//console.log(hide_words(hidden_word));
-// A counter variable for the wrong guess
-
-//  a variable that keeps track of the maximum number of wrong guesses that are allowed.
-
-// function to see if the letter that is guessed is right or wrong
-
-// function to update the hangman images when the player makes a wrong guess
-
-// function to change the secret word by adding the letter that was guessed correctly.
-
-// function to display game over when the player reaches the max number of wrong guesses
-
-// function to reset the game whenever the player presses the RESET BUTTON
-
-// function  to switch player from player 1 to player 2
-
-// function to calculte both player 1 and player 2 scores indivually
-
-//function to compare both scores and determine the winner
-
-// a function to restart the game
-
+// func to hide and then wrap each character in a box
 let count = 0;
 function wrapCharactersInDiv(arr) {
   let curr_arr = count % arr.length;
@@ -99,15 +54,6 @@ for (let i = 0; i < char.length; i++) {
   char[i].style.opacity = "0";
   char[i].style.transition = "opacity 2s";
 }
-
-let my_name_index = 0;
-// loop over all classes to hide the opacity in each class
-///function to hide the words
-
-////////////
-// all of my character classes
-
-////////////////////////////////////
 
 const score = document.querySelector(".score");
 let score_counter = 0;
@@ -174,27 +120,38 @@ let alphabets_arr = [
   "n",
   "m",
 ];
+
+//func to reveal characters and control the game flow based on the player's game
+
 function reveal_words(alphabet) {
   let btn = document.getElementById(alphabet);
-
+  // if the player makes a wrong guess
   let guessed_word = false;
-  let all_ones = true;
+
+  //if all of the characters inside the box are revealed
+  let all_opacity = true;
+
+  // if the player is able to guess the word
   let display_new_words = true;
 
   const char = document.querySelectorAll(".char");
+  //check if a specific alphabet character matches the inner HTML of any element,
+  // and modify the opacity and boolean variables accordingly.
   for (let i = 0; i < char.length; i++) {
     if (alphabet === char[i].innerHTML) {
       char[i].style.opacity = "1";
       guessed_word = true;
-      all_ones = false;
+      all_opacity = false;
     }
   }
+  //check if any char el  in the array has an opacity of "1",
+  // and sets the variable "all_opacity" to true if any such element is found.
   for (let i = 0; i < char.length; i++) {
     if (char[i].style.opacity !== "1") {
-      all_ones = true;
+      all_opacity = true;
     }
   }
-  if (all_ones) {
+  if (all_opacity) {
     display_new_words = false;
   }
   if (display_new_words) {
@@ -216,22 +173,26 @@ function reveal_words(alphabet) {
     }, "1000");
   }
 
+  // if the guessed word is wrong
   if (guessed_word === false) {
     btn.innerHTML = "X";
     btn.style.color = "red";
-    //btn.style.fontSize = "220%";
     update_imgs();
     let new_str = btn;
     if (!empty_arr.includes(new_str)) {
       empty_arr.push(new_str);
     }
-
+    //if the player is not able to guess the word
     if (empty_arr.length === 5) {
       hide_keyboard();
+      for (let i = 0; i < char.length; i++) {
+        char[i].style.opacity = "1";
+      }
     }
   }
 }
 
+// func to display next word
 function display_next_word() {
   for (let i = 0; i < char.length; i++) {
     char[i].remove();
@@ -254,6 +215,7 @@ let my_country = ["c", "guatemala", "kazakhstan", "azerbaijan"];
 let my_animal = ["c", "hummingbird", "nightingale", "rattlesnake"];
 let hide_box = document.querySelector(".my-box");
 
+//if the player chooses country category
 function chose_country() {
   hide_box.style.opacity = "1";
   keyboard.style.opacity = "1";
@@ -276,6 +238,7 @@ function chose_country() {
     char[i].style.transition = "opacity 2s";
   }
 }
+//if the player chooses animal category
 function chose_animal() {
   hide_box.style.opacity = "1";
   keyboard.style.opacity = "1";
