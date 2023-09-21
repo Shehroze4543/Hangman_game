@@ -1,7 +1,9 @@
 @media (min-width: 992px) {
-  body,
+  body {
+    padding-top: 25px;
+  }
   .top-sec-div {
-    padding-top: 75px;
+    padding-top: 10px;
   }
   .keyboard-div {
     padding-left: 125px;
@@ -9,6 +11,86 @@
   .box-1,
   .box-2,
   .center-div {
-    margin-top: 150px;
+    margin-top: 40px;
+  }
+  .container-1 {
+    border: 5px solid red;
+    height: 150px;
+  }
+  .game-title-img {
+    width: 25%;
+    margin-left: 75px;
+  }
+  .start-play-btn {
+    width: 140%;
+  }
+  .page-2-body {
+    height: 200px;
+    width: 135vh;
+    padding-left: 100px;
+  }
+  .page-2-play-btn {
+    margin-top: 150px !important;
+  }
+  .index-body {
+    padding-left: 100px;
+    height: 50px;
+  }
+
+  .player-2-body {
+    height: 200px;
+    width: 135vh;
+    padding-left: 100px;
+  }
+  .player-2-left-sec {
+    margin-left: 425px;
+  }
+  .box-center {
+    margin-left: -400px;
+  }
+  .scoreboard-btn {
+    width: 230px !important;
+  }
+  .result-div {
+    margin-left: -600px;
+    height: 100px;
+  }
+  .nxt-pl {
+    width: 200px;
+    height: 75px;
+    font-size: 25px;
+  }
+  .cat-1-btn {
+    width: 250px;
+    height: 75px;
+    font-size: 40px;
+  }
+  .my-box {
+    height: 100px;
+    margin-top: 50px;
+  }
+  .key {
+    width: 48px;
+    padding: 0px 5px;
+  }
+  .kb-div {
+    height: 250px;
+    width: 625px;
+    margin: -100px 0px 0px -450px;
+  }
+  #line-2-kb {
+    width: 625px;
+    margin-left: 40px;
+  }
+  #line-3-kb {
+    width: 625px;
+    margin-left: 110px;
+  }
+  .hangman-imgs-container-div {
+    width: 150px;
+    margin-right: 550px;
+  }
+  .img-1 {
+    width: 200px;
   }
 }
