@@ -1,0 +1,14 @@
+@media (min-width: 992px) {
+  body,
+  .top-sec-div {
+    padding-top: 75px;
+  }
+  .keyboard-div {
+    padding-left: 125px;
+  }
+  .box-1,
+  .box-2,
+  .center-div {
+    margin-top: 150px;
+  }
+}

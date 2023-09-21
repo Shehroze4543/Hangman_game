@@ -4,25 +4,28 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <meta name="description" content="" />
+                       <meta name="viewport" content="width=device-width, initial-scale=1" />
+                  <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Mouse+Memoirs&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    
+    <link rel="stylesheet" href="media-querries.css"    />
   </head>
   <body>
     <div class="title-div">
-      <img src="\imgs\Capture1.PNG" alt="" class="title-img" />
+                   <img src="\imgs\Capture1.PNG" alt="" class="title-img" />
     </div>
 
     <div class="player-info-div">
-      <form action="" class="player-name-form">
-        <div class="player-name-form-1-div">
-          <label class="player-name"> Player 1 :</label>
+                       <form action="" class="player-name-form">
+          <div class="player-name-form-1-div">
+                  <label class="player-name">
+            Player 1 :   </label>
           <input
             type="text"
             name="pl-1-name"
@@ -51,14 +54,14 @@
     <script>
       //
 let form = document.querySelector(".player-name-form");
-let player_1_name = document.querySelector(".player-1-name");
+    let player_1_name = document.querySelector(".player-1-name");
 let player_2_name = document.querySelector(".player-2-name");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  let player_1_name_value = player_1_name.value;
+        let player_1_name_value = player_1_name.value;
   let player_2_name_value = player_2_name.value;
-  localStorage.setItem("player-1", player_1_name_value);
+   localStorage.setItem("player-1", player_1_name_value);
   localStorage.setItem("player-2", player_2_name_value);
   
   window.location.href = "index.html";
